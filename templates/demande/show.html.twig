@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demande{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Afficher demande {{ demande.status }}</h1>
+
+        <table class="table table-striped">
+            <tbody>
+            <tr>
+                <th>Titre</th>
+                <td colspan="5">{{ demande.title }}</td>
+            </tr>
+            <tr>
+                <th>Crée le</th>
+                <td>{{ demande.createdAt ? demande.createdAt|date('d/m/Y') : '' }}</td>
+                <th>Budget</th>
+                <td>{{ demande.budget }}€</td>
+                <th>Category</th>
+                <td>{{ demande.subCategory }}</td>
+
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td colspan="5">{{ demande.description }}</td>
+            </tr>
+            <tr>
+                <th>Date de début</th>
+                <td>{{ demande.startAt ? demande.startAt|date('d/m/Y') : '' }}</td>
+                <th>Date de fin</th>
+                <td>{{ demande.endAt ? demande.endAt|date('d/m/Y') : '' }}</td>
+                <th>Date limite</th>
+                <td>{{ demande.limitAt ? demande.limitAt|date('d/m/Y') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ demande.address }}</td>
+                <th>Code Postal</th>
+                <td>{{ demande.postalCode }}</td>
+                <th>Gouvernorat</th>
+                <td>{{ demande.city }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h1>Liste des Offres</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nom de l'entreprise</th>
+                <th>Description de l'offre</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for comment in demande.comments %}
+                <tr>
+                    <td>
+                    <a href="{{ path('app_profile_show',{'id':comment.createdBy.profile.id}) }}"> {{ comment.createdBy.profile.company }}</a>
+                    </td>
+                    <td>{{ comment.content }}</td>
+                    <td>
+                        <a href="{{ path('app_accept_offer',{'id':demande.id}) }}" class="btn btn-primary">Réserver</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr class="text-center text-danger bg-light">
+                    <td colspan="13">Aucun enregistrement trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+
+{% endblock %}

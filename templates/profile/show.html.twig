@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Profile de l'entreprise</h1>
+
+        <table class="table table-borderless">
+            <tbody>
+            <tr>
+                <th>Nom de l'entreprise</th>
+                <td>{{ profile.company }}</td>
+            </tr>
+            <tr>
+                <th>Biographie</th>
+                <td>{{ profile.bio }}</td>
+            </tr>
+            <tr>
+                <th>Type de l'entreprise</th>
+                <td>{{ profile.type }}</td>
+            </tr>
+            <tr>
+                <th>Activité</th>
+                <td>{{ profile.activity }}</td>
+            </tr>
+            <tr>
+                <th>Téléphone</th>
+                <td>{{ profile.phone }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ profile.address }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ profile.city }}</td>
+            </tr>
+            <tr>
+                <th>Code Postal</th>
+                <td>{{ profile.postalCode }}</td>
+            </tr>
+            <tr>
+                <th>Portable</th>
+                <td>{{ profile.mobile }}</td>
+            </tr>
+            <tr>
+                <th>Matricule fiscale</th>
+                <td>{{ profile.vatId }}</td>
+            </tr>
+            <tr>
+                <th>Site Web</th>
+                <td>{{ profile.webSite }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

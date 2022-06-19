@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>STAGi</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+    {% block stylesheets %}
+        <!-- Favicon -->
+        <link href="{{ asset('img/favicon.ico') }}" rel="icon">
+        <!-- Google Web Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald:wght@400;500;600&display=swap"
+              rel="stylesheet">
+        <!-- Font Awesome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+        <!-- Flaticon Font -->
+        <link href="{{ asset('lib/flaticon/font/flaticon.css') }}" rel="stylesheet">
+        <!-- Libraries Stylesheet -->
+        <link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    {% endblock %}
+</head>
+<body>
+<!-- Topbar Start -->
+<div class="container-fluid bg-dark py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
+                <div class="d-inline-flex align-items-center">
+                    {{ "now"|date('d/m/Y') }}
+                </div>
+            </div>
+            <div class="col-md-6 text-center text-lg-right">
+                <div class="d-inline-flex align-items-center">
+                    {% if app.user %}
+                        <a href="{{ path('app_demande_index') }}"
+                           class="text-white px-3"><i
+                                    class="fas fa-list-alt"></i>
+                            {% if is_granted('ROLE_CUSTOMER') %}
+                                Mes demandes
+                            {% else %}
+                                Liste des demandes
+                            {% endif %}
+                        </a>
+                        <span class="text-white">| </span>
+                        <div class="dropdown">
+                            <a href="#" class="text-white dropdown-toggle px-3"
+                               data-toggle="dropdown"><i
+                                        class="fas fa-user"></i> {{ app.user.fullName|title }}</a>
+                            <div class="dropdown-menu rounded-0 mt-3 dropdown-menu-right">
+                                <a href="{{ path('app_profile') }}" class="dropdown-item">Mon compte</a>
+                                <a href="{{ path('app_profile_change_password') }}" class="dropdown-item">Mot de
+                                    passe</a>
+                                <a href="{{ path('app_logout') }}" class="dropdown-item">Déconnexion</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <a href="{{ path('app_login') }}"
+                           class="text-white px-3"><i
+                                    class="fas fa-sign-in-alt"></i>
+                            Connexion</a>
+                        <span class="text-white">|</span>
+                        <a href="{{ path('app_register') }}"
+                           class="text-white px-3"><i
+                                    class="fas fa-user-plus"></i>
+                            Inscription</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Topbar End -->
+
+
+<!-- Navbar Start -->
+<div class="container-fluid position-relative nav-bar p-0">
+    <div class="container position-relative" style="z-index: 9;">
+        <nav class="navbar navbar-expand-lg bg-secondary navbar-dark py-3 py-lg-0 pl-3 pl-lg-5">
+            <a href="" class="navbar-brand">
+                <h1 class="m-0 display-5 text-white"><span class="text-primary">STAG</span>i</h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+                <div class="navbar-nav ml-auto py-0">
+                    <a href="{{ path('app_home') }}"
+                       class="nav-item nav-link {{ app.request.get('_route') == 'app_home' ? 'active' : '' }}">Accueil</a>
+                 
+                </div>
+                <div class="navbar-nav  py-0">
+                    <a href="{{ path('app_offre') }}"
+                       class="nav-item nav-link {{ app.request.get('_route') == 'app_offre' ? 'active' : '' }}">Offre</a>
+                 
+                </div>
+                <div class="navbar-nav  py-0">
+                    <a href="{{ path('app_student') }}"
+                       class="nav-item nav-link {{ app.request.get('_route') == 'app_student' ? 'active' : '' }}">Etudiant</a>
+                 
+                </div>
+                <div class="navbar-nav  py-0">
+                    <a href="{{ path('app_company') }}"
+                       class="nav-item nav-link {{ app.request.get('_route') == 'app_company' ? 'active' : '' }}">Entreprise</a>
+                 
+                </div>
+               
+            </div>
+    </div>
+    </nav>
+</div>
+</div>
+
+<br><br><br>
+{{ include('_inc/_error.html.twig') }}
+{% block body %}{% endblock %}
+<br><br><br>
+<!-- Footer Start -->
+<div class="container-fluid bg-dark text-white py-5 px-sm-3 px-md-5">
+    <div class="container">
+        <div class="row pt-5">
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="text-primary mb-4">Contact</h4>
+                <p><i class="fa fa-map-marker-alt mr-2"></i>Tunisie, Tataouine 3200</p>
+                <p><i class="fa fa-phone-alt mr-2"></i>+216 28 519 548</p>
+                <p><i class="fa fa-envelope mr-2"></i>info@stagi.com</p>
+                <div class="d-flex justify-content-start mt-4">
+                    <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0"
+                       style="width: 38px; height: 38px;" href="#"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0"
+                       style="width: 38px; height: 38px;" href="https://www.facebook.com"><i
+                                class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0"
+                       style="width: 38px; height: 38px;" href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0"
+                       style="width: 38px; height: 38px;" href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="text-primary mb-4">lien</h4>
+                <div class="d-flex flex-column justify-content-start">
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>acceuil</a>
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>offre</a>
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Etudiant</a>
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Entreprise</a>
+                    <a class="text-white" href="#"><i class="fa fa-angle-right mr-2"></i>Contact</a>
+                </div>
+            </div>
+           
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="text-primary mb-4">Newsletter</h4>
+                <form action="">
+                    <div class="form-group">
+                        <input type="text" class="form-control border-0" placeholder="Your Name" required="required"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control border-0" placeholder="Your Email" required="required"/>
+                    </div>
+                    <div>
+                        <button class="btn btn-lg btn-primary btn-block border-0" type="submit">envoyer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="container border-top border-secondary pt-5">
+            <p class="m-0 text-center text-white">
+                &copy; <a class="text-white font-weight-bold" href="#">STAGi</a>. All Rights Reserved. 
+            </p>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+{% block javascripts %}
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('lib/isotope/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('lib/lightbox/js/lightbox.min.js') }}"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="{{ asset('mail/jqBootstrapValidation.min.js') }}"></script>
+    <script src="{{ asset('mail/contact.js') }}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{{ asset('js/main.js') }}"></script>
+{% endblock %}
+</body>
+
+</html>

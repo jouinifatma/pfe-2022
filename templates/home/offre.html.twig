@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+ {% block title %}
+       Mes offres
+   {% endblock %}
+   {% block body %}
+   <h1>Mes offres</h1>
+
+   <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Start At</th>
+                <th>End At</th>
+                <th>Type</th>
+                <th>CreatedAt</th>
+                <th>Status</th>
+                <th>Created By</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for offre in offres %}
+            <tr>
+                <td>{{ offre.id }}</td>
+                <td>{{ offre.title }}</td>
+                <td>{{ offre.description }}</td>
+                <td>{{ offre.start_at }}</td>
+                <td>{{ offre.end_at }}</td>
+                <td>{{ offre.type }}</td>
+                <td>{{ offre.createdAt ? offreT.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ offre.status }}</td>
+                <td>{{ offre.created_by }}</td>
+                
+                
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+   
+   {% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Demande{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Modifier demande</h1>
+
+        {{ include('demande/_form.html.twig', {'button_label': 'Modifier demande'}) }}
+    </div>
+
+{% endblock %}

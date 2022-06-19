@@ -1,5 +1,5 @@
 {{ form_start(form) }}
-{% if  is_granted('ROLE_CUSTOMER') %}
+{% if  is_granted('ROLE_STUDENT') %}
     <div class="row">
         <div class="col">
             {{ form_row(form.phone) }}
@@ -57,9 +57,6 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            {{ form_row(form.vatId) }}
-        </div>
         <div class="col">
             {{ form_row(form.webSite) }}
         </div>

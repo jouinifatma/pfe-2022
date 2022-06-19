@@ -5,13 +5,13 @@
 {% block body %}
     <div class="container">
         <h1>Mon Compte
-            {% if app.user.profile and is_granted('ROLE_CUSTOMER') %}
-                (Client)
-            {% elseif  app.user.profile and is_granted('ROLE_SUPPLIER') %}
-                (Fournisseur)
+            {% if app.user.profile and is_granted('ROLE_STUDENT') %}
+                (Étudiant)
+            {% elseif  app.user.profile and is_granted('ROLE_COMPANY') %}
+                (Entreprise)
             {% endif %}
         </h1>
-        {% if app.user.profile and is_granted('ROLE_CUSTOMER') %}
+        {% if app.user.profile and is_granted('ROLE_STUDENT') %}
             <table class="table table-borderless">
                 <tbody>
                 <tr>
@@ -46,7 +46,7 @@
                 <a href="{{ path('app_profile_change_password') }}" class="btn btn-secondary">Changer
                     Mot de passe</a>
             </div>
-        {% elseif  app.user.profile and is_granted('ROLE_SUPPLIER') %}
+        {% elseif  app.user.profile and is_granted('ROLE_COMPANY') %}
 
             <table class="table table-borderless">
                 <tbody>
@@ -97,10 +97,6 @@
                 <tr>
                     <th>Portable</th>
                     <td>{{ app.user.profile.mobile }}</td>
-                </tr>
-                <tr>
-                    <th>Matricule fiscale</th>
-                    <td>{{ app.user.profile.vatId }}</td>
                 </tr>
                 <tr>
                     <th>Site web</th>

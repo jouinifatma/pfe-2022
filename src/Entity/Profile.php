@@ -15,71 +15,70 @@ class Profile
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private ?int $id = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $company;
+    private ?string $company;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $phone;
+    private ?string $phone;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $address;
+    private ?string $address;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $postalCode;
+    private ?string $postalCode;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $mobile;
-
-    
+    private ?string $mobile;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $type;
+    private ?string $type;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $bio;
+    private ?string $bio;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $activity;
+    private ?string $activity;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $webSite;
+    private ?string $webSite;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $createdAt;
+    private ?\DateTimeInterface $createdAt;
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="profile", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
-    private $owner;
+    private ?User $owner;
 
     /**
      * @ORM\ManyToOne(targetEntity=City::class, inversedBy="profiles")
      * @ORM\JoinColumn(nullable=false)
      */
-    //private $city;
+    private ?City $city;
+
 
     public function __construct()
     {
@@ -149,18 +148,6 @@ class Profile
     public function setMobile(string $mobile): self
     {
         $this->mobile = $mobile;
-
-        return $this;
-    }
-
-    public function getVatId(): ?string
-    {
-        return $this->vatId;
-    }
-
-    public function setVatId(?string $vatId): self
-    {
-        $this->vatId = $vatId;
 
         return $this;
     }
@@ -237,16 +224,17 @@ class Profile
         return $this;
     }
 
-   // public function getCity(): ?City
-    //{
-      //  return $this->city;
-   // }
+    public function getCity(): ?City
+    {
+        return $this->city;
+    }
 
-    //public function setCity(?City $city): self
-    //{
-      //  $this->city = $city;
+    public function setCity(?City $city): self
+    {
+        $this->city = $city;
 
-        //return $this;
-    //}
+        return $this;
+    }
+
 
 }

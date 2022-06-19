@@ -31,7 +31,7 @@ class ProfileType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        if ($this->security->isGranted('ROLE_CUSTOMER')) {
+        if ($this->security->isGranted('ROLE_STUDENT')) {
             $builder
                 ->add('phone', TextType::class, [
                     'required' => true,
@@ -96,10 +96,6 @@ class ProfileType extends AbstractType
 
                     'required' => true,
                     'label' => 'Gouvernorat'
-                ])
-                ->add('vatId', TextType::class, [
-                    'required' => false,
-                    'label' => 'Matricule fiscale',
                 ])
                 ->add('phone', TextType::class, [
                     'required' => true,

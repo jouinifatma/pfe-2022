@@ -36,13 +36,13 @@
             <div class="col-md-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
                     {% if app.user %}
-                        <a href="{{ path('app_demande_index') }}"
-                           class="text-white px-3"><i
-                                    class="fas fa-list-alt"></i>
-                            {% if is_granted('ROLE_CUSTOMER') %}
+                        <a href="#"
+                           class="text-white px-3">
+                            <i class="fas fa-list-alt"></i>
+                            {% if is_granted('ROLE_STUDENT') %}
                                 Mes demandes
                             {% else %}
-                                Liste des demandes
+                                Mes Offres
                             {% endif %}
                         </a>
                         <span class="text-white">| </span>
@@ -90,28 +90,21 @@
                 <div class="navbar-nav ml-auto py-0">
                     <a href="{{ path('app_home') }}"
                        class="nav-item nav-link {{ app.request.get('_route') == 'app_home' ? 'active' : '' }}">Accueil</a>
-                 
-                </div>
-                <div class="navbar-nav  py-0">
-                    <a href="{{ path('app_offre') }}"
-                       class="nav-item nav-link {{ app.request.get('_route') == 'app_offre' ? 'active' : '' }}">Offre</a>
-                 
-                </div>
-                <div class="navbar-nav  py-0">
-                    <a href="{{ path('app_student') }}"
-                       class="nav-item nav-link {{ app.request.get('_route') == 'app_student' ? 'active' : '' }}">Etudiant</a>
-                 
+
                 </div>
                 <div class="navbar-nav  py-0">
                     <a href="{{ path('app_company') }}"
                        class="nav-item nav-link {{ app.request.get('_route') == 'app_company' ? 'active' : '' }}">Entreprise</a>
-                 
+
                 </div>
-               
+                <div class="navbar-nav  py-0">
+                    <a href=""
+                       class="nav-item nav-link ">Offres des stages</a>
+
+                </div>
             </div>
+        </nav>
     </div>
-    </nav>
-</div>
 </div>
 
 <br><br><br>
@@ -149,7 +142,7 @@
                     <a class="text-white" href="#"><i class="fa fa-angle-right mr-2"></i>Contact</a>
                 </div>
             </div>
-           
+
             <div class="col-lg-3 col-md-6 mb-5">
                 <h4 class="text-primary mb-4">Newsletter</h4>
                 <form action="">
@@ -167,7 +160,7 @@
         </div>
         <div class="container border-top border-secondary pt-5">
             <p class="m-0 text-center text-white">
-                &copy; <a class="text-white font-weight-bold" href="#">STAGi</a>. All Rights Reserved. 
+                &copy; <a class="text-white font-weight-bold" href="#">STAGi</a>. All Rights Reserved.
             </p>
         </div>
     </div>

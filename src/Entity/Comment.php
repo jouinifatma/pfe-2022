@@ -15,24 +15,19 @@ class Comment
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private ?int $id = null;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $content;
+    private ?string $content;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $createdBy;
+    private ?User $createdBy;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Demande::class, inversedBy="comments")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $demande;
 
     public function getId(): ?int
     {
@@ -62,16 +57,5 @@ class Comment
 
         return $this;
     }
-
-    public function getDemande(): ?Demande
-    {
-        return $this->demande;
-    }
-
-    public function setDemande(?Demande $demande): self
-    {
-        $this->demande = $demande;
-
-        return $this;
-    }
+    
 }

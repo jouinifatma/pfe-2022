@@ -79,6 +79,11 @@ class Profile
      */
     private ?City $city;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private ?string $cv;
+
 
     public function __construct()
     {
@@ -232,6 +237,18 @@ class Profile
     public function setCity(?City $city): self
     {
         $this->city = $city;
+
+        return $this;
+    }
+
+    public function getCv(): ?string
+    {
+        return $this->cv;
+    }
+
+    public function setCv(?string $cv): self
+    {
+        $this->cv = $cv;
 
         return $this;
     }

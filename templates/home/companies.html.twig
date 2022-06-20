@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+ {% block title %}
+     Listes des entreprises
+ {% endblock %}
+   {% block body %}
+       <div class="container">
+           <h1>Listes des entreprises</h1>
+           <hr>
+           {% for company in companies %}
+               <h2>{{ company.profile.company }}</h2>
+           {% endfor %}
+
+       </div>
+   {% endblock %}

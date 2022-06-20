@@ -1,0 +1,10 @@
+{# 'Brouillon', 'Validé', 'Envoyé', 'Payé' #}
+{% if s == 'Brouillon' %}
+    <span class="badge badge-warning">{{ s }}</span>
+{% elseif s == 'Payé' %}
+    <span class="badge badge-success">{{ s }}</span>
+{% elseif s == 'Publié' %}
+    <span class="badge badge-info">{{ s }}</span>
+{% elseif s == 'Envoyé' %}
+    <span class="badge badge-secondary">{{ s }}</span>
+{% endif %}

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+ {% block title %}Listes des offers{% endblock %}
+   {% block body %}
+       <div class="container">
+           <h1>Listes des offers</h1>
+           <hr>
+           {% for offer in offers %}
+               <h2>{{ offer.title|capitalize }}
+                   <span class="float-right">
+                   {% include '_inc/status.html.twig' with {s: offer.status} %}
+               </span>
+                   <br>
+                   <spn class="text-muted small"> {{ offer.createdAt ? offer.createdAt|date('d/m/Y') : '' }}</spn>
+               </h2>
+               <p>{{ offer.description }}</p>
+               <p>date de début : {{ offer.startAt ? offer.startAt|date('d/m/Y') : '' }} | Date de fin
+                   : {{ offer.endAt ? offer.endAt|date('d/m/Y') : '' }}</p>
+               <a href="{{ path('app_offer_user',{'offer': offer.id }) }}" class="btn btn-success">Postuler</a>
+               <p></p>
+           {% else %}
+               <tr class="text-center text-danger bg-light">
+                   <td colspan="13">Aucun enregistrement trouvé</td>
+               </tr>
+           {% endfor %}
+
+       </div>
+   {% endblock %}

@@ -55,6 +55,10 @@ class ProfileType extends AbstractType
                     'choice_label' => 'name',
                     'required' => true,
                     'label' => 'Gouvernorat'
+                ])
+                ->add('cv', TextareaType::class, [
+                    'required' => true,
+                    'label' => 'Votre CV:'
                 ]);
         } else {
             $builder->add('company', TextType::class, [

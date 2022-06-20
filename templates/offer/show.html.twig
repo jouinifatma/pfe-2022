@@ -1,46 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Offer{% endblock %}
+{% block title %}Afficher offre{% endblock %}
 
 {% block body %}
-    <h1>Offer</h1>
 
-    <table class="table">
-        <tbody>
+    <div class="container">
+        <h1>Afficher offre
+
+            <span class="float-right badge">
+            {% include '_inc/status.html.twig' with {s: offer.status} %}
+</span>
+
+
+        </h1>
+
+        <table class="table table-borderless">
+            <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ offer.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
+                <th>Titre :</th>
                 <td>{{ offer.title }}</td>
             </tr>
             <tr>
-                <th>Description</th>
+                <th>Description :</th>
                 <td>{{ offer.description }}</td>
             </tr>
             <tr>
-                <th>CreatedAt</th>
-                <td>{{ offer.createdAt ? offer.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Type :</th>
+                <td>{{ offer.type }}</td>
             </tr>
             <tr>
-                <th>StartAt</th>
-                <td>{{ offer.startAt ? offer.startAt|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Crée le :</th>
+                <td>{{ offer.createdAt ? offer.createdAt|date('d/m/Y') : '' }}</td>
             </tr>
             <tr>
-                <th>EndAt</th>
-                <td>{{ offer.endAt ? offer.endAt|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Date de début :</th>
+                <td>{{ offer.startAt ? offer.startAt|date('d/m/Y') : '' }}</td>
             </tr>
             <tr>
-                <th>Status</th>
-                <td>{{ offer.status }}</td>
+                <th>Date de fin :</th>
+                <td>{{ offer.endAt ? offer.endAt|date('d/m/Y') : '' }}</td>
             </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_offer_index') }}">back to list</a>
-
-    <a href="{{ path('app_offer_edit', {'id': offer.id}) }}">edit</a>
-
-    {{ include('offer/_delete_form.html.twig') }}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

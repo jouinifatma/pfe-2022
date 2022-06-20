@@ -36,15 +36,15 @@
             <div class="col-md-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
                     {% if app.user %}
-                        <a href="#"
-                           class="text-white px-3">
-                            <i class="fas fa-list-alt"></i>
-                            {% if is_granted('ROLE_STUDENT') %}
-                                Mes demandes
-                            {% else %}
-                                Mes Offres
-                            {% endif %}
-                        </a>
+
+                        {% if is_granted('ROLE_STUDENT') %}
+                            <a href="{{ path('app_candidate') }}" class="text-white px-3"><i
+                                        class="fas fa-list-alt"></i> Mes candidatures</a>
+                        {% else %}
+                            <a href="{{ path('app_offer_index') }}" class="text-white px-3"><i
+                                        class="fas fa-list-alt"></i> Mes Offres</a>
+                        {% endif %}
+
                         <span class="text-white">| </span>
                         <div class="dropdown">
                             <a href="#" class="text-white dropdown-toggle px-3"
@@ -80,7 +80,7 @@
 <div class="container-fluid position-relative nav-bar p-0">
     <div class="container position-relative" style="z-index: 9;">
         <nav class="navbar navbar-expand-lg bg-secondary navbar-dark py-3 py-lg-0 pl-3 pl-lg-5">
-            <a href="" class="navbar-brand">
+            <a href="{{ path('app_home') }}" class="navbar-brand">
                 <h1 class="m-0 display-5 text-white"><span class="text-primary">STAG</span>i</h1>
             </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -93,12 +93,12 @@
 
                 </div>
                 <div class="navbar-nav  py-0">
-                    <a href="{{ path('app_company') }}"
+                    <a href="{{ path('app_list_companies') }}"
                        class="nav-item nav-link {{ app.request.get('_route') == 'app_company' ? 'active' : '' }}">Entreprise</a>
 
                 </div>
                 <div class="navbar-nav  py-0">
-                    <a href=""
+                    <a href="{{ path('app_list_offers') }}"
                        class="nav-item nav-link ">Offres des stages</a>
 
                 </div>

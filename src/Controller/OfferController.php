@@ -20,8 +20,20 @@ class OfferController extends AbstractController
      */
     public function index(OfferRepository $offerRepository): Response
     {
+        $user = $this->getUser();
+        $offers = $offerRepository->findby(['createdBy' => $user], ['id' => 'DESC']);
         return $this->render('offer/index.html.twig', [
-            'offers' => $offerRepository->findAll(),
+            'offers' => $offers
+        ]);
+    }
+
+    /**
+     * @Route("/candidatures", name="app_candidate", methods={"GET"})
+     */
+    public function candidates(OfferRepository $offerRepository): Response
+    {
+        return $this->render('offer/candidate.html.twig', [
+
         ]);
     }
 
@@ -36,8 +48,9 @@ class OfferController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $offer->setCreatedBy($this->getUser());
+            $offer->setStatus('Publié');
             $offerRepository->add($offer, true);
-
+            $this->addFlash('success', 'Offre ajouté');
             return $this->redirectToRoute('app_offer_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -67,7 +80,7 @@ class OfferController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $offerRepository->add($offer, true);
-
+            $this->addFlash('success', 'Offre modifié');
             return $this->redirectToRoute('app_offer_index', [], Response::HTTP_SEE_OTHER);
         }
 

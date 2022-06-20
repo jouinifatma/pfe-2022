@@ -64,10 +64,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private Collection $offers;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Offer::class, mappedBy="candidate")
+     */
+    private Collection $mesOffers;
+
 
     public function __construct()
     {
         $this->offers = new ArrayCollection();
+        $this->mesOffers = new ArrayCollection();
     }
 
 
@@ -242,4 +248,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Offer>
+     */
+    public function getMesOffers(): Collection
+    {
+        return $this->mesOffers;
+    }
+
+    public function addMesOffer(Offer $mesOffer): self
+    {
+        if (!$this->mesOffers->contains($mesOffer)) {
+            $this->mesOffers[] = $mesOffer;
+            $mesOffer->addCandidate($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMesOffer(Offer $mesOffer): self
+    {
+        if ($this->mesOffers->removeElement($mesOffer)) {
+            $mesOffer->removeCandidate($this);
+        }
+
+        return $this;
+    }
+
 }

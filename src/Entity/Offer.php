@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\OfferRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -52,6 +54,22 @@ class Offer
      * @ORM\JoinColumn(nullable=false)
      */
     private ?User $createdBy;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private ?string $type;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="mesOffers")
+     */
+    private Collection $candidate;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTimeImmutable();
+        $this->candidate = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -138,6 +156,42 @@ class Offer
     public function setCreatedBy(?User $createdBy): self
     {
         $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getCandidate(): Collection
+    {
+        return $this->candidate;
+    }
+
+    public function addCandidate(User $candidate): self
+    {
+        if (!$this->candidate->contains($candidate)) {
+            $this->candidate[] = $candidate;
+        }
+
+        return $this;
+    }
+
+    public function removeCandidate(User $candidate): self
+    {
+        $this->candidate->removeElement($candidate);
 
         return $this;
     }
